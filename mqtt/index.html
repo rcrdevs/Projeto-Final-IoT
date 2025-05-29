@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Monitoramento IoT</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
+    .card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .label { font-size: 18px; font-weight: bold; }
+    .value { font-size: 32px; color: #007ACC; }
+  </style>
+</head>
+<body>
+  <h1>Monitoramento IoT</h1>
+
+  <div class="card">
+    <div class="label">Temperatura</div>
+    <div class="value" id="temp">-- C</div>
+  </div>
+
+  <div class="card">
+    <div class="label">Umidade</div>
+    <div class="value" id="umid">-- %</div>
+  </div>
+
+  <div class="card">
+    <div class="label">Qualidade do Ar (MQ-135)</div>
+    <div class="value" id="ar">--</div>
+  </div>
+
+  <div class="card">
+    <div class="label">Qualidade da Agua (TDS)</div>
+    <div class="value" id="tds">-- ppm</div>
+  </div>
+
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+  <script>
+    const client = mqtt.connect('wss://broker.hivemq.com:8884/mqtt');
+
+    client.on('connect', function () {
+      console.log('? Conectado ao MQTT');
+      client.subscribe('casa/sensores/temperatura');
+      client.subscribe('casa/sensores/umidade');
+      client.subscribe('casa/sensores/ar');
+      client.subscribe('casa/sensores/tds');
+    });
+
+    client.on('message', function (topic, message) {
+      const valor = message.toString();
+      if (topic === 'casa/sensores/temperatura') {
+        document.getElementById('temp').innerText = valor + ' C';
+      } else if (topic === 'casa/sensores/umidade') {
+        document.getElementById('umid').innerText = valor + ' %';
+      } else if (topic === 'casa/sensores/ar') {
+        document.getElementById('ar').innerText = valor;
+      } else if (topic === 'casa/sensores/tds') {
+        document.getElementById('tds').innerText = valor + ' ppm';
+      }
+    });
+  </script>
+</body>
+</html>
