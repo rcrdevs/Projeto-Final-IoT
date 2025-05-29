@@ -60,7 +60,7 @@ Protoboard + Jumpers	Para prototipagem.
 Fonte 5V/12V	Fonte de alimentação via shield (opcional) ou micro-USB.
 Caixa de Projeto (opcional)	Pode ser substituída por base plástica + fita dupla face.
 
-![image](https://github.com/user-attachments/assets/cc330bed-8209-4998-ae8e-5f83aedd2399)
+![image](https://github.com/user-attachments/assets/c57fa197-c23e-4432-89c4-61e02811f26e)
 
 ## Documentação das Interfaces, Protocolos e Módulos de Comunicação
 
@@ -96,4 +96,5 @@ Conexão via MQTT WebSocket: wss://broker.hivemq.com:8884/mqtt
 
 Apresenta dados ao vivo com atualização dinâmica.
 
-![image](https://github.com/user-attachments/assets/c57fa197-c23e-4432-89c4-61e02811f26e)
+![image](https://github.com/user-attachments/assets/cc330bed-8209-4998-ae8e-5f83aedd2399)
+
